@@ -1,0 +1,130 @@
+<ng-http-loader
+    [backdrop]="true"
+    [backgroundColor]="'#ffaa00'"
+    [debounceDelay]="100"
+    [extraDuration]="300"
+    [minDuration]="300"
+    [backdropBackgroundColor]="'#ffffff'"
+    [spinner]="spinkit">
+</ng-http-loader>
+
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content flex-col lg:flex-row-reverse">
+    <div class="text-center lg:text-left">
+      <!-- <h1 class="text-5xl font-bold">Login now!</h1>
+        <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p> -->
+    </div>
+    <div class="card flex-shrink-0 max-w-sm shadow-2xl bg-base-100">
+      <div class="card-body" [formGroup]="form">
+        <h1 class="text-5xl font-bold flex justify-center">Login now!</h1>
+
+        <div class="alert alert-success shadow-lg" *ngIf="successfull != ''">
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="stroke-current flex-shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>{{ successfull }}</span>
+          </div>
+        </div>
+
+        <div class="alert alert-error shadow-sm" *ngIf="password != ''">
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="stroke-current flex-shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>{{ password }}</span>
+          </div>
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Email</span>
+          </label>
+          <input
+            type="email"
+            placeholder="email"
+            formControlName="email"
+            class="input input-bordered"
+          />
+        </div>
+
+        <div
+          *ngIf="f['email'].touched && f['email'].invalid"
+          class="alert alert-danger"
+        >
+          <div *ngIf="f['email'].errors && f['email'].errors['required']">
+            Email is required.
+          </div>
+          <div *ngIf="f['email'].errors && f['email'].errors['email']">
+            Please, enter valid email address.
+          </div>
+        </div>
+
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Password</span>
+          </label>
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="password"
+            class="input input-bordered"
+          />
+
+          <div
+            *ngIf="f['password'].touched && f['password'].invalid"
+            class="alert alert-danger"
+          >
+            <div
+              *ngIf="f['password'].errors && f['password'].errors['required']"
+            >
+              password is required.
+            </div>
+            <div
+              *ngIf="f['password'].errors && f['password'].errors['password']"
+            >
+              Please, enter valid password.
+            </div>
+
+            <div *ngIf="f['password'].dirty && f['password'].errors">
+              Please, password should be 6 characters and more.
+            </div>
+          </div>
+
+          <label class="label">
+            <a href="#" class="label-text-alt link link-hover"
+              >Forgot password?</a
+            >
+          </label>
+        </div>
+        <div class="form-control mt-6">
+          <button class="btn btn-primary" (click)="login()">Login</button>
+        </div>
+
+        <h1 class="text-1xl font-thin flex justify-center">
+          Don't have an account <a class="cod" routerLink="/signup">, register now!</a>
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>

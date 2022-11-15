@@ -1,0 +1,150 @@
+<!-- successfully added -->
+<!-- card -->
+
+<div
+  *ngFor="let item of this.share.notes | searchFilter: this.share.term ; let i = index"
+  id="cards"
+
+>
+  <div class="flex flex-col">
+   
+    
+    <div class="card card-compact w-96 bg-base-100 shadow-xl" id="shad">
+      <div class="flex flex-lg-row">
+        <!-- modal -->
+        <!-- The button to open modal -->
+        <div class="flex justify-center flex-col flex-1">  
+          <div class="flex justify-center font-bold">
+            <div class="flex" id="title">{{ item.title }}</div>
+          </div>
+          <div class="flex justify-center">
+            <div class="flex" id="date">
+              {{ item.date | date: "dd MMM yyyy HH:mm" }}
+            </div>
+          </div>
+        </div>
+       
+
+        <div class="flex flex-2">
+          <label
+          (click)="send(i)"
+          for="my-modal-6"
+          class="btn btn-ghost normal-case text-xl"
+          id="bin"
+          ><i class="fa-regular fa-trash-can" id="trash"></i
+        ></label>
+        </div>
+        
+      </div>
+      <label for="my-modal-5" class="flex justify-center" (click)="edits(i)" id="cCard">
+        <div [innerHTML]="item.note" id="show"></div>
+      </label>
+    </div>
+    
+  </div>
+
+  <!-- edit modal -->
+  <input type="checkbox" id="my-modal-5" class="modal-toggle" />
+  <div class="modal">
+    <div class="modal-box w-11/12 max-w-5xl">
+      <h1 class="text-5xl font-bold flex justify-center">Update</h1>
+      <p class="py-4"><!-- navbar with the title and save --></p>
+      <div class="navbar bg-base-100">
+        <div class="navbar-start">
+          <!-- <a class="modal-action">
+            <i class="fa-solid fa-caret-left fa-2x"></i>
+          </a> -->
+          <!-- <div class="modal-action">
+            <label for="my-modal-5" class="btn">Yay!</label>
+          </div> -->
+
+          <div class="form-control">
+            <input
+              type="text"
+              placeholder="Title"
+              [(ngModel)]="title"
+              class="input input-bordered"
+            />
+          </div>
+        </div>
+
+        <div class="navbar-end">
+          <a class="btn" (click)="saveEdits()">Save</a>
+        </div>
+      </div>
+
+      <!-- successfully added -->
+      <div class="alert alert-success shadow-lg" *ngIf="success != ''">
+        <div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="stroke-current flex-shrink-0 h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span>{{ success }}</span>
+        </div>
+      </div>
+
+      <div class="alert alert-error shadow-sm" *ngIf="error != ''">
+        <div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="stroke-current flex-shrink-0 h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span>{{ error }}</span>
+        </div>
+      </div>
+      <!-- Template editor -->
+
+      <div class="edit">
+        <angular-editor
+          [(ngModel)]="htmlContent"
+          [config]="config"
+        ></angular-editor>
+      </div>
+      <div class="modal-action">
+        <label for="my-modal-5" class="btn" (click)="exit()">Exit</label>
+      </div>
+    </div>
+  </div>
+  <!-- Put this part before </body> tag -->
+  <input type="checkbox" id="my-modal-6" class="modal-toggle" />
+  <div class="modal modal-bottom sm:modal-middle">
+    <div class="modal-box">
+      <h3 class="font-bold text-lg">Warning!</h3>
+      <p class="py-4">Are you sure you want to delete {{ holdTitle }}?!</p>
+      <div class="modal-action">
+        <label for="my-modal-6" class="btn btn-error" (click)="deleteOne()">Yes</label>
+        <label for="my-modal-6" class="btn btn-success">No</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-http-loader
+  [backdrop]="true"
+  [backgroundColor]="'#ffaa00'"
+  [debounceDelay]="100"
+  [extraDuration]="300"
+  [minDuration]="300"
+  [backdropBackgroundColor]="'#ffffff'"
+  [spinner]="spinkit"
+>
+</ng-http-loader>

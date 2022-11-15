@@ -1,0 +1,58 @@
+<!-- navbar with the title and save -->
+<div class="navbar bg-base-100">
+    <div class="navbar-start">
+        <a class="btn btn-ghost normal-case text-xl"  routerLink="/note">
+            <i class="fa-solid fa-caret-left fa-2x"></i>
+        </a>
+
+        <div class="form-control">
+            <input type="text" placeholder="Title" [(ngModel)]="title" class="input input-bordered" />
+          </div>
+    </div>
+    
+    <div class="navbar-end">
+      <a class="btn" (click)="save()">Save</a>
+    </div>
+  </div>
+
+  <!-- successfully added -->
+  <div class="alert alert-success shadow-lg" *ngIf="success != ''">
+    <div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="stroke-current flex-shrink-0 h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+      <span>{{ success }}</span>
+    </div>
+  </div>
+
+  <div class="alert alert-error shadow-sm" *ngIf="error !=''">
+    <div>
+      <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+      <span>{{error}}</span>
+    </div>
+  </div>
+<!-- Template editor -->
+
+<div class="edit">
+<angular-editor [(ngModel)]="htmlContent" [config]="config"></angular-editor>
+</div>
+
+<ng-http-loader
+    [backdrop]="true"
+    [backgroundColor]="'#ffaa00'"
+    [debounceDelay]="100"
+    [extraDuration]="300"
+    [minDuration]="300"
+    [backdropBackgroundColor]="'#ffffff'"
+    [spinner]="spinkit">
+</ng-http-loader>

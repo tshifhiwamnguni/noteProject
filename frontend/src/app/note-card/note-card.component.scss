@@ -1,0 +1,41 @@
+#cards{
+    display: flex;
+}
+
+#shad{
+    box-shadow: inset -4px -4px 20px rgba(0, 0, 0, 0.362);
+    height: 200px !important;
+}
+
+#bin{
+    margin-top: 10px;
+}
+
+#cCard{
+    cursor: pointer;
+    padding: 5px 20px;
+    
+}
+
+#color{
+    color: white;
+}
+
+#show{
+    max-height: 100px !important;
+    color: gray;
+    overflow-y: auto;
+}
+
+#date{
+    color: gray;
+    padding-bottom: 10px;
+}
+
+#trash{
+    color: crimson;
+}
+
+#title{
+    padding-top: 10px;
+}
